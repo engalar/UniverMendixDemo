@@ -2,6 +2,7 @@ package myfirstmodule.imps;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.stream.Collectors;
 
 import com.mendix.core.Core;
@@ -46,6 +47,7 @@ public class UniverRequestHandler extends RequestHandler {
         }
 
         // 执行查询并构建响应
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         var objects = xpath.allMendixObjects();
         var result = new JSONObject();
         var objectsArray = new JSONArray();
@@ -55,6 +57,9 @@ public class UniverRequestHandler extends RequestHandler {
             for (int i = 0; i < columns.length(); i++) {
                 String column = columns.getString(i);
                 var value = object.getValue(context, column);
+                // if value is date, convert to string
+                value = value instanceof java.util.Date ? dateFormat.format(value) : value;
+
                 columns2.put(column, value);
             }
             jo2.put("id", object.getId().toLong());
@@ -62,6 +67,9 @@ public class UniverRequestHandler extends RequestHandler {
             jo2.put("columns", columns2);
             objectsArray.put(jo2);
         }
+        result.put("limit", limit);
+        result.put("offset", offset);
+        result.put("count", xpath.count());
         result.put("objects", objectsArray);
 
         // 设置响应内容

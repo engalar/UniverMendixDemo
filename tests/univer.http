@@ -8,3 +8,28 @@ Content-Type: application/json
     columns: ["Attribute", "Attribute_4"],
     entity: "MyFirstModule.Entity"
 }
+
+
+###
+POST http://127.0.0.1:8080/univer HTTP/1.1
+Content-Type: application/json
+
+{
+    limit: 2,
+    offset: 1,
+    sort: "Attribute_4 asc",
+    columns: ["Attribute", "Attribute_4"],
+    entity: "MyFirstModule.Entity"
+}
+
+###
+POST http://127.0.0.1:8080/univer HTTP/1.1
+Content-Type: application/json
+
+{
+    limit: 2,
+    offset: 1,
+    sort: "Attribute_4 asc",
+    columns: ["Attribute", "Attribute_2", "Attribute_3", "Attribute_4", "Attribute_5"],
+    entity: "MyFirstModule.Entity"
+}
