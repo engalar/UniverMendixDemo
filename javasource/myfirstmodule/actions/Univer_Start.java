@@ -9,8 +9,10 @@
 
 package myfirstmodule.actions;
 
+import com.mendix.core.Core;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
+import myfirstmodule.imps.UniverRequestHandler;;
 
 public class Univer_Start extends CustomJavaAction<java.lang.Boolean>
 {
@@ -23,6 +25,7 @@ public class Univer_Start extends CustomJavaAction<java.lang.Boolean>
 	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
+		Core.addRequestHandler("univer", new UniverRequestHandler());
 		return true;
 		// END USER CODE
 	}
