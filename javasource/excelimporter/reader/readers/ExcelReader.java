@@ -357,11 +357,9 @@ public class ExcelReader {
 
             switch (getExcelExtension(settings.getContext(), fileDocument)) {
                 case XLS:
-                    rowCount = ExcelDataReader.readData(excelFile.getAbsolutePath(), sheetIndex, startRowIndex, new ExcelRowProcessorImpl(getSettings(), getDocPropertiesMapping()), getSettings()::aliasIsMapped);
-                    break;
                 case XLSM:
                 case XLSX:
-                    rowCount = ExcelXLSXDataReader.readDataRows(excelFile, sheetIndex, startRowIndex, new ExcelRowProcessorImpl(getSettings(), getDocPropertiesMapping()), getSettings()::aliasIsMapped);
+                    rowCount = EasyExcelDataReader.readData(excelFile, sheetIndex, startRowIndex, new ExcelRowProcessorImpl(getSettings(), getDocPropertiesMapping()), getSettings()::aliasIsMapped);
                     break;
                 case UNKNOWN:
                     throw new CoreException("File extension is not an Excel extension ('.xls', '.xlsx' or 'xlsm').");
