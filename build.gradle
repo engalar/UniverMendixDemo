@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    sourceCompatibility = 17
+    targetCompatibility = 17
+}
+
+apply from: 'deployment/variables.gradle'
+
+dependencies {
+    publicApiJars.each { jarPath ->
+        implementation files("${mendixInstallDir}/${jarPath}")
+    }
+    implementation fileTree(dir:'userlib', include: ['*.jar'])
+    implementation fileTree(dir:'vendorlib', include: ['*.jar'])
+    testImplementation(platform('org.junit:junit-bom:5.11.0'))
+	testImplementation('org.junit.jupiter:junit-jupiter')
+	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+sourceSets {
+    main {
+        java {
+            srcDirs = ["${mendixProjectDir}/src/main/java", "${mendixProjectDir}/${javaSourceDirName}"]
+        }
+    }
+    test {
+        java {
+            srcDirs = ["${mendixProjectDir}/src/test/java"]
+        }
+    }
+}
+// For Java source code
+tasks.withType(JavaCompile) {
+    options.debug = true // Ensure debug information is included
+    options.debugOptions.debugLevel = 'source,lines,vars' // Specify what debug info to include
+}

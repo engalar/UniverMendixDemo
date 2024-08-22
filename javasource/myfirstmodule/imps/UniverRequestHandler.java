@@ -49,7 +49,7 @@ public class UniverRequestHandler extends RequestHandler {
         // 执行查询并构建响应
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
         var objects = xpath.allMendixObjects();
-        var result = new JSONObject();
+        var result = UniverService.process(jsonObject);
         var objectsArray = new JSONArray();
         for (var object : objects) {
             var jo2 = new JSONObject();
