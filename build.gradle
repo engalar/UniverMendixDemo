@@ -12,13 +12,44 @@ java {
 }
 
 apply from: 'deployment/variables.gradle'
-
+ext {
+	mendixJavaVersion = 21
+	mendixInstallDir = "D:/Program Files/Mendix/10.12.1.39914"
+	projectName = "UniverMendixDemo"
+	projectSafeName = "UniverMendixDemo"
+	mendixProjectDir = "D:/Users/eg/Mendix/UniverMendixDemo"
+	deploymentDir = "D:/Users/eg/Mendix/UniverMendixDemo/deployment"
+	dataSnapshotFile = "D:/Users/eg/Mendix/UniverMendixDemo/data-snapshot.zip"
+	dataDir = "D:/Users/eg/Mendix/UniverMendixDemo/deployment/data"
+	extractDataSnapshot = false
+	templatesDir = "D:/Program Files/Mendix/10.12.1.39914/modeler/runtemplates"
+	runDir = "run"
+	compileTargetDir = "run/bin"
+	deploymentDirName = "deployment"
+	modelDirName = "model"
+	resourcesDirName = "resources"
+	javaSourceDirName = "javasource"
+	libDirName = "lib"
+	userlibDirName = "userlib"
+	vendorlibDirName = "vendorlib"
+	generateFullDebugInfo = true
+	publicApiJars = [
+		"runtime/bundles/com.mendix.json.jar",
+		"runtime/bundles/com.mendix.logging-api.jar",
+		"runtime/bundles/com.mendix.m2ee-api.jar",
+		"runtime/bundles/com.mendix.public-api.jar",
+		"runtime/bundles/org.eclipse.jetty.toolchain.jetty-servlet-api.jar",
+		"runtime/bundles/org.eclipse.jetty.toolchain.jetty-javax-websocket-api.jar"
+	]
+}
 dependencies {
     publicApiJars.each { jarPath ->
         implementation files("${mendixInstallDir}/${jarPath}")
     }
     implementation fileTree(dir:'userlib', include: ['*.jar'])
     implementation fileTree(dir:'vendorlib', include: ['*.jar'])
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+	// testImplementation files( "D:/Program Files/Mendix/10.12.1.39914/runtime/bundles/com.mendix.json.jar")
     testImplementation(platform('org.junit:junit-bom:5.11.0'))
 	testImplementation('org.junit.jupiter:junit-jupiter')
 	testRuntimeOnly('org.junit.platform:junit-platform-launcher')
@@ -27,8 +58,8 @@ dependencies {
 test {
     useJUnitPlatform()
     testLogging {
-		events "passed", "skipped", "failed"
-	}
+       events "failed", "passed", "skipped", "standardError","standardOut", "started"
+   }
 }
 sourceSets {
     main {
