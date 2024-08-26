@@ -10,8 +10,17 @@ public class UniverService {
 
         var result = new JSONObject();
         var plugins = SpringUtil.context.getBeansOfType(IPlugin.class);
+        Boolean isSuccess = true;
         for (var plugin : plugins.values()) {
-            plugin.init(input);
+            isSuccess = plugin.init(input);
+            // once failed, stop processing
+            if (!isSuccess) {
+                break;
+            }
+        }
+        if (!isSuccess) {
+            // TODO: handle failure
+            return result;
         }
         for (var plugin : plugins.values()) {
             plugin.result(result);

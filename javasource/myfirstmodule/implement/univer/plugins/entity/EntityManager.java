@@ -29,7 +29,7 @@ class EnityMetadata extends HashProtectedObject {
 public class EntityManager implements IEnityManager, IPlugin {
 
     @Override
-    public void init(JSONObject req) {
+    public boolean init(JSONObject req) {
         // 获取补哈希保护的实体对象列表和权限配置模型数据
         // descerialize 对象列表和权限配置模型数据
         var objectMapper = new ObjectMapper();
@@ -46,6 +46,7 @@ public class EntityManager implements IEnityManager, IPlugin {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return true;
     }
 
     @Override

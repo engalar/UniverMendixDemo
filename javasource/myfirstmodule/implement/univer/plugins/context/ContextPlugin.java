@@ -13,9 +13,8 @@ import myfirstmodule.implement.univer.plugins.IPlugin;
 public class ContextPlugin implements IPlugin {
 
     @Override
-    public void init(JSONObject req) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
+    public boolean init(JSONObject req) {
+        return true;
     }
 
     @Override
