@@ -1,16 +1,13 @@
-package myfirstmodule.imps.plugins.context;
+package myfirstmodule.implement.univer.plugins.widget;
 
 import org.springframework.stereotype.Service;
 
 import com.mendix.thirdparty.org.json.JSONObject;
 
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
-/**
- * e.g. Grid need dropdown selection value from context.
- */
 @Service
-public class ContextPlugin implements IPlugin {
+public class DropDownPlugin implements IPlugin {
 
     @Override
     public void init(JSONObject req) {

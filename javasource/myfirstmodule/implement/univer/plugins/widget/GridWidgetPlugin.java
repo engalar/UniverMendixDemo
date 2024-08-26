@@ -1,16 +1,13 @@
-package myfirstmodule.imps.plugins.query;
+package myfirstmodule.implement.univer.plugins.widget;
 
 import org.springframework.stereotype.Service;
 
 import com.mendix.thirdparty.org.json.JSONObject;
 
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
-/** 
- * dependecy mxmodelreflection and oql module
- */
 @Service
-public class QueryPlugin implements IPlugin {
+public class GridWidgetPlugin implements IPlugin{
 
     @Override
     public void init(JSONObject req) {

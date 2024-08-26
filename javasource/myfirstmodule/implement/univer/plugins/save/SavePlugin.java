@@ -1,13 +1,16 @@
-package myfirstmodule.imps.plugins.widget;
+package myfirstmodule.implement.univer.plugins.save;
 
 import org.springframework.stereotype.Service;
 
 import com.mendix.thirdparty.org.json.JSONObject;
 
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
+/**
+ * This is the implementation of the SavePlugin with replication.jar.
+ */
 @Service
-public class DropDownPlugin implements IPlugin {
+public class SavePlugin implements IPlugin {
 
     @Override
     public void init(JSONObject req) {
@@ -20,5 +23,5 @@ public class DropDownPlugin implements IPlugin {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'result'");
     }
-    
+
 }

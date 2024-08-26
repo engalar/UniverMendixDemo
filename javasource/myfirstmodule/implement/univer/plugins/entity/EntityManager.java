@@ -1,4 +1,4 @@
-package myfirstmodule.imps.plugins.entity;
+package myfirstmodule.implement.univer.plugins.entity;
 
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mendix.thirdparty.org.json.JSONException;
 import com.mendix.thirdparty.org.json.JSONObject;
 
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
 abstract class HashProtectedObject {
     private String hash;

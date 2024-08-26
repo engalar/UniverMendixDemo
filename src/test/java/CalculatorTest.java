@@ -1,13 +1,12 @@
 import org.junit.jupiter.api.Test;
 
-import myfirstmodule.imps.SpringUtil;
-import myfirstmodule.imps.UniverService;
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.spring.SpringUtil;
+import myfirstmodule.implement.univer.UniverService;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mendix.thirdparty.org.json.JSONObject;
 import com.mendix.thirdparty.org.json.JSONArray;
-import myfirstmodule.imps.plugins.JsonDemo;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,9 +15,9 @@ public class CalculatorTest {
     public void testAdd() {
         Calculator calculator = new Calculator();
         assertEquals(5, calculator.add(2, 3));
-        // throw new RuntimeException("Test failed");
+        
         var plugins = SpringUtil.context.getBeansOfType(IPlugin.class);
-        assertEquals(2, plugins.size());
+        assertEquals(6, plugins.size());
     }
 
     @Test

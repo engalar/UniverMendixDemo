@@ -1,16 +1,16 @@
-package myfirstmodule.imps.plugins.save;
+package myfirstmodule.implement.univer.plugins.query;
 
 import org.springframework.stereotype.Service;
 
 import com.mendix.thirdparty.org.json.JSONObject;
 
-import myfirstmodule.imps.plugins.IPlugin;
+import myfirstmodule.implement.univer.plugins.IPlugin;
 
-/**
- * This is the implementation of the SavePlugin with replication.jar.
+/** 
+ * dependecy mxmodelreflection and oql module
  */
 @Service
-public class SavePlugin implements IPlugin {
+public class QueryPlugin implements IPlugin {
 
     @Override
     public void init(JSONObject req) {
@@ -23,5 +23,5 @@ public class SavePlugin implements IPlugin {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'result'");
     }
-
+    
 }

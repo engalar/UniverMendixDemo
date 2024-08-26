@@ -1,4 +1,4 @@
-package myfirstmodule.imps.plugins.entity;
+package myfirstmodule.implement.univer.plugins.entity;
 
 public interface IEnityManager {
     public boolean add(String id);
