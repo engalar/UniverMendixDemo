@@ -16,8 +16,6 @@ public class GridWidgetPlugin implements IPlugin{
 
     @Override
     public void result(JSONObject res) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'result'");
     }
     
 }

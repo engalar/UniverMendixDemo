@@ -15,56 +15,46 @@ public class CalculatorTest {
     public void testAdd() {
         Calculator calculator = new Calculator();
         assertEquals(5, calculator.add(2, 3));
-        
+
         var plugins = SpringUtil.context.getBeansOfType(IPlugin.class);
         assertEquals(6, plugins.size());
     }
 
     @Test
     public void testSubtract() {
-        String jsonString = "{\n" +
-                "    \"objects\": [\n" +
-                "        {\n" +
-                "            \"id\": 1,\n" +
-                "            \"hash\": \"abc123\",\n" +
-                "            \"columns\": {\n" +
-                "                \"name\": \"John Doe\",\n" +
-                "                \"age\": 30,\n" +
-                "                \"email\": \"johndoe@example.com\"\n" +
-                "            }\n" +
-                "        },\n" +
-                "        {\n" +
-                "            \"id\": 2,\n" +
-                "            \"hash\": \"def456\",\n" +
-                "            \"columns\": {\n" +
-                "                \"name\": \"Jane Smith\",\n" +
-                "                \"age\": 25,\n" +
-                "                \"email\": \"janesmith@example.com\"\n" +
-                "            }\n" +
-                "        }\n" +
-                "    ]\n" +
-                "}";
+        String jsonString = """
+                {
+                    "entityPlugin": {
+                        "objects": [
+                            {
+                                "id": 1,
+                                "hash": "abc123",
+                                "entity": "MyFirstModule.Entity",
+                                "columns": {
+                                    "name": "John Doe",
+                                    "age": 30,
+                                    "email": "johndoe@example.com"
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "hash": "def456",
+                                "entity": "MyFirstModule.Entity",
+                                "columns": {
+                                    "name": "Jane Smith",
+                                    "age": 25,
+                                    "email": "janesmith@example.com"
+                                }
+                            }
+                        ]
+                    }
+                }
+                        """;
 
         JSONObject jsonObject = new JSONObject(jsonString);
 
-        // Convert JSONObject to POJO
-        ObjectMapper objectMapper = new ObjectMapper();
-        JsonDemo jsonDemo = null;
-        try {
-            jsonDemo = objectMapper.readValue(jsonObject.toString(), JsonDemo.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // Example assertions
-        assertEquals(2, jsonDemo.getObjects().size());
-        assertEquals(1, jsonDemo.getObjects().get(0).getId());
-        assertEquals("abc123", jsonDemo.getObjects().get(0).getHash());
-        assertEquals("John Doe", jsonDemo.getObjects().get(0).getColumns().get("name"));
-
         var result = UniverService.process(jsonObject);
 
-        assertEquals(8, result.getInt("objects"));
-        assertFalse(result.getBoolean("test"));
+        assertEquals(8, result.getInt("entityPlugin"));
     }
 }

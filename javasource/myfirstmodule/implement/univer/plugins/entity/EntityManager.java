@@ -3,27 +3,13 @@ package myfirstmodule.implement.univer.plugins.entity;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mendix.thirdparty.org.json.JSONException;
 import com.mendix.thirdparty.org.json.JSONObject;
 
 import myfirstmodule.implement.univer.plugins.IPlugin;
-
-abstract class HashProtectedObject {
-    private String hash;
-}
-
-class EnityMetadata extends HashProtectedObject {
-    private String name;
-    private String description;
-    private String entityName;
-    private String entityType;
-    private String[] attributes;
-    private String[] associations;
-    private String[] permissions;
-}
+import myfirstmodule.implement.univer.plugins.entity.model.Root;
 
 @Service
 public class EntityManager implements IEnityManager, IPlugin {
@@ -35,7 +21,7 @@ public class EntityManager implements IEnityManager, IPlugin {
         var objectMapper = new ObjectMapper();
         try {
             var entityMetadata = objectMapper.readValue(req.getJSONObject("entityPlugin").toString(),
-                    EnityMetadata.class);
+                    Root.class);
         } catch (JsonMappingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
